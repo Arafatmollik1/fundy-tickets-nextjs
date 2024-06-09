@@ -8,7 +8,7 @@ This project is a Next.js application designed for Fundy Tickets. It utilizes Fi
 
 Before proceeding, ensure you have Node.js and npm installed on your machine.
 
-And don't forget to install dependencies:
+Do not forget to install dependencies:
 
 ```sh
 npm install
