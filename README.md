@@ -8,18 +8,11 @@ This project is a Next.js application designed for Fundy Tickets. It utilizes Fi
 
 Before proceeding, ensure you have Node.js and npm installed on your machine.
 
-1. Clone the repository:
-   ```sh
-   git clone <repository-url>
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd fundy-tickets-nextjs
-   ```
-3. Install dependencies:
-   ```sh
-   npm install
-   ```
+And don't forget to install dependencies:
+
+```sh
+npm install
+```
 
 ## Available Scripts
 
@@ -64,6 +57,8 @@ Formats the project files using Prettier.
 ```sh
 npm run format
 ```
+
+If you are using vscode then there is automatic formatting too.
 
 ## License
 
