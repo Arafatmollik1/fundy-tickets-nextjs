@@ -16,7 +16,7 @@ npm install
 
 ## Git Flow
 
-.
+Note: The Main branch is portected and code cannot be directly pushed.
 To maintain code consistency and manage changes effectively, follow these guidelines:
 
 1. **Issue Tracking**: Before making any changes, create or assign yourself to an issue in the project's issue tracker.
