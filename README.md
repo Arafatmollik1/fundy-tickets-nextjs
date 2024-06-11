@@ -14,6 +14,17 @@ And don't forget to install dependencies:
 npm install
 ```
 
+We are using firebase. So you need to add these variables into your `.env.local`
+
+```sh
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+```
+
 ## Git Flow
 
 **Note: The Main branch is portected and code cannot be directly pushed.**
