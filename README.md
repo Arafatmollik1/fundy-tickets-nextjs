@@ -41,11 +41,9 @@ To maintain code consistency and manage changes effectively, follow these guidel
 
 3. **Code Changes**: Implement your changes in the new branch, following the project's coding standards and guidelines.
 
-4. **Pull Requests**: Once your changes are ready for review, open a pull request against the develop branch. Provide a clear description of the changes made and reference any related issues.
+4. **Pull Requests**: Once your changes are ready for review, open a pull request against the develop branch. Provide a clear description of the changes made and reference any related issues. Make sure to follow the pull request checklist.
 
 5. **Code Review**: Wait for code review feedback from Arafat. Address any comments or suggestions raised during the review process. After approval, merge your pull request into the develop branch.
-
-Note: Make sure to follow the pull request checklist. :)
 
 ## Available Scripts
 

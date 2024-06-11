@@ -13,6 +13,7 @@ closes # (issue)
 ## Checklist:
 
 - [ ] I have run `npm run format`
+- [ ] I have run `npm run lint`
 - [ ] I have updated changelog
 - [ ] My PR requires .env changes
 - [ ] My PR requires `npm install`
