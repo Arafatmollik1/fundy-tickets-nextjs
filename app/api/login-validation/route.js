@@ -1,7 +1,5 @@
 export default async function POST(req, res) {
+  const { idToken } = req.body
 
-    const { idToken } = req.body;
-
-    res.json(idToken);
-
-};
+  res.json(idToken)
+}

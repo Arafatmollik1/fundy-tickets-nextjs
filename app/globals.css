@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
 }
 
-
 .josefin-sans {
-  font-family: "Josefin Sans", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }

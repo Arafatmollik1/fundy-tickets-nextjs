@@ -6,27 +6,25 @@ import { useAuth } from '../context/AuthContext'
 import { useRouter } from 'next/navigation'
 
 const LoginPage = () => {
-
-  const { handleGoogleLogin } = useAuth();
-  const router = useRouter();
+  const { handleGoogleLogin } = useAuth()
+  const router = useRouter()
 
   // Handle email auth
   const handleSignUpWithEmail = (e) => {
-    e.preventDefault();
+    e.preventDefault()
   }
-
 
   return (
     <div className='mx-auto flex min-h-screen max-w-[360px] flex-col items-center justify-center px-[40px]'>
       <div className='text-end'>
         <div className='mb-2 flex items-end gap-1.5'>
           <Image src={logo} alt='logo' height={80} />
-          <h1 className='text-[33.47px] font-bold leading-9 text-[#364C6F] josefin-sans'>
+          <h1 className='josefin-sans text-[33.47px] font-bold leading-9 text-[#364C6F]'>
             Fundy
           </h1>
         </div>
 
-        <p className='pr-3 text-[13.47px] font-medium text-[#364C6F] josefin-sans'>
+        <p className='josefin-sans pr-3 text-[13.47px] font-medium text-[#364C6F]'>
           Get set Funded!
         </p>
       </div>
