@@ -2,27 +2,31 @@
 import Image from 'next/image'
 
 import logo from '@/public/main-logo.png'
+import { useAuth } from '../context/AuthContext'
+import { useRouter } from 'next/navigation'
 
 const LoginPage = () => {
-  const handleLoginWithGoogle = () => {
-    console.log('Login with Google button clicked!')
+
+  const { handleGoogleLogin } = useAuth();
+  const router = useRouter();
+
+  // Handle email auth
+  const handleSignUpWithEmail = (e) => {
+    e.preventDefault();
   }
 
-  const HandleSignUpWithEmail = (e) => {
-    e.preventDefault()
-  }
 
   return (
     <div className='mx-auto flex min-h-screen max-w-[360px] flex-col items-center justify-center px-[40px]'>
       <div className='text-end'>
         <div className='mb-2 flex items-end gap-1.5'>
           <Image src={logo} alt='logo' height={80} />
-          <h1 className='text-[33.47px] font-bold leading-9 text-[#364C6F]'>
+          <h1 className='text-[33.47px] font-bold leading-9 text-[#364C6F] josefin-sans'>
             Fundy
           </h1>
         </div>
 
-        <p className='pr-3 text-[13.47px] font-medium text-[#364C6F]'>
+        <p className='pr-3 text-[13.47px] font-medium text-[#364C6F] josefin-sans'>
           Get set Funded!
         </p>
       </div>
@@ -30,7 +34,7 @@ const LoginPage = () => {
       <div className='mt-[90px] flex w-full flex-col items-center'>
         <button
           className='w-full rounded-[5px] border border-[#97BFD7] p-3 text-sm font-medium text-[#364C6F] transition-all hover:shadow-sm hover:shadow-[#97bed781]'
-          onClick={handleLoginWithGoogle}
+          onClick={handleGoogleLogin}
         >
           Login with Google
         </button>
@@ -56,7 +60,7 @@ const LoginPage = () => {
 
           <button
             className='mx-auto -mt-0.5 w-fit rounded-[5px] border border-[#97BFD7] bg-[#364C6F] px-[23px] py-2 text-sm font-medium tracking-wide text-white transition-all duration-200 hover:shadow-sm hover:shadow-[#97bed767] active:scale-95'
-            onClick={HandleSignUpWithEmail}
+            onClick={handleSignUpWithEmail}
           >
             Sign up
           </button>
