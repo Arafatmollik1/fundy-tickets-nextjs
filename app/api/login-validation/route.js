@@ -1,5 +1,12 @@
-export default async function POST(req, res) {
-  const { idToken } = req.body
+export const POST = async (req) => {
+  const { idToken } = await req.json()
 
-  res.json(idToken)
+  try {
+  } catch (error) {
+    console.error(error)
+  }
+
+  return new Response(JSON.stringify(idToken), {
+    status: 201
+  })
 }

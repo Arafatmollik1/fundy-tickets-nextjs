@@ -7,20 +7,33 @@ import {
 } from 'firebase/auth'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { auth } from '../utils/firebaseConfig'
-import { useParams, usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 const AuthContext = createContext()
 
 const ContextProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const router = useRouter()
-  const pathname = usePathname()
 
   // Google Auth
   const provider = new GoogleAuthProvider()
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider)
+
+      //Id token validation
+      const idToken = await result.user.getIdToken()
+      const response = await fetch('/api/login-validation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idToken })
+      })
+      const data = await response.json()
+
+      console.log(data)
+
       router.push('/login-validation')
     } catch (error) {
       console.error('Error during login: ', error)
@@ -33,17 +46,7 @@ const ContextProvider = ({ children }) => {
       if (currentUser) {
         setUser(currentUser)
 
-        //Token validation
-        // const idToken = await currentUser.getIdToken();
-        // const response = await fetch('/api/login-validation', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ idToken }),
-        // });
-
-        // console.log(currentUser, idToken);
+        console.log(currentUser)
       } else {
         setUser(null)
       }

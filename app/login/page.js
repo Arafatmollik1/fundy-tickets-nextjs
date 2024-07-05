@@ -3,11 +3,9 @@ import Image from 'next/image'
 
 import logo from '@/public/main-logo.png'
 import { useAuth } from '../context/AuthContext'
-import { useRouter } from 'next/navigation'
 
 const LoginPage = () => {
   const { handleGoogleLogin } = useAuth()
-  const router = useRouter()
 
   // Handle email auth
   const handleSignUpWithEmail = (e) => {
@@ -24,7 +22,7 @@ const LoginPage = () => {
           </h1>
         </div>
 
-        <p className='josefin-sans pr-3 text-[13.47px] font-medium text-[#364C6F]'>
+        <p className='pr-3 text-[13.47px] font-medium text-[#364C6F]'>
           Get set Funded!
         </p>
       </div>
