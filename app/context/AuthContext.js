@@ -14,7 +14,6 @@ const ContextProvider = ({ children }) => {
     const router = useRouter();
     const pathname = usePathname();
 
-    // console.log(pathname);
 
     // Google Auth
     const provider = new GoogleAuthProvider();
@@ -40,13 +39,19 @@ const ContextProvider = ({ children }) => {
             if (currentUser) {
                 setUser(currentUser);
 
-                const idToken = await currentUser.getIdToken();
 
-                if (pathname === '/login') {
-                    console.log(pathname);
-                }
+                //Token validation
+                // const idToken = await currentUser.getIdToken();
+                // const response = await fetch('/api/login-validation', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify({ idToken }),
+                // });
 
-                console.log(currentUser, idToken);
+
+                // console.log(currentUser, idToken);
 
             } else {
                 setUser(null);
