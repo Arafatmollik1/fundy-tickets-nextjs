@@ -46,7 +46,6 @@ const ContextProvider = ({ children }) => {
       if (currentUser) {
         setUser(currentUser)
 
-        console.log(currentUser)
       } else {
         setUser(null)
       }
