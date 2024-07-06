@@ -21,9 +21,10 @@ const ContextProvider = ({ children }) => {
     try {
       const result = await signInWithPopup(auth, provider)
 
+      // console.log()
       //Id token validation
       const idToken = await result.user.getIdToken()
-      const response = await fetch('/api/login-validation', {
+      const response = await fetch(`/api/login-validation/${result?.user?.uid}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -36,7 +37,7 @@ const ContextProvider = ({ children }) => {
 
       router.push('/login-validation')
     } catch (error) {
-      console.error('Error during login: ', error)
+      console.error(error)
     }
   }
 
