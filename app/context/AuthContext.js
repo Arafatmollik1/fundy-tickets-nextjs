@@ -12,7 +12,6 @@ import { doc, getDoc, setDoc } from '@firebase/firestore'
 import db from '../utils/firestore'
 import { auth } from '../utils/firebaseConfig'
 
-
 const AuthContext = createContext()
 
 const ContextProvider = ({ children }) => {
