@@ -23,7 +23,7 @@ const ContextProvider = ({ children }) => {
   const storeUserData = async (AuthUser) => {
     const userRef = doc(db, 'users', AuthUser.uid);
 
-    const createdAtUnix = new Date(Number(user?.reloadUserInfo?.createdAt))
+    const createdAtUnix = new Date(Number(AuthUser?.reloadUserInfo?.createdAt))
     const createdAt = createdAtUnix.toUTCString();
 
     try {
@@ -41,6 +41,11 @@ const ContextProvider = ({ children }) => {
       }
     }
     catch (error) {
+      signOut(auth);
+
+      setShowLoginError(true);
+      router.push('/login');
+
       console.error(error)
     }
 
@@ -67,12 +72,12 @@ const ContextProvider = ({ children }) => {
 
       if (response.ok) {
 
-        await storeUserData(user);
+        await storeUserData(result.user);
 
         setShowLoginError(false);
         router.push('/home');
 
-        console.log('User Logged In')
+        console.log('User Has Logged In')
 
       } else {
 
@@ -105,7 +110,6 @@ const ContextProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         setUser(currentUser)
-        console.log(currentUser)
 
       } else {
         setUser(null)
