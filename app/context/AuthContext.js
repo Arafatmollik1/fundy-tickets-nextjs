@@ -14,14 +14,17 @@ const AuthContext = createContext()
 const ContextProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const router = useRouter()
+  const [showLoginError, setShowLoginError] = useState(false);
+
 
   // Google Auth
   const provider = new GoogleAuthProvider()
   const handleGoogleLogin = async () => {
+
     try {
+      router.push('/login-validation');
       const result = await signInWithPopup(auth, provider)
 
-      // console.log()
       //Id token validation
       const idToken = await result.user.getIdToken()
       const response = await fetch(`/api/login-validation/${result?.user?.uid}`, {
@@ -31,13 +34,32 @@ const ContextProvider = ({ children }) => {
         },
         body: JSON.stringify({ idToken })
       })
-      const data = await response.json()
 
-      console.log(data)
+      if (response.ok) {
 
-      router.push('/login-validation')
+        setShowLoginError(false);
+        router.push('/home')
+
+      } else {
+
+        setShowLoginError(true);
+        router.push('/login');
+
+        const data = await response.json();
+        if (data.error) {
+          console.error(error.message);
+        }
+
+      }
+
+
+
     } catch (error) {
-      console.error(error)
+
+      setShowLoginError(true);
+
+      console.error(error);
+      router.push('/login')
     }
   }
 
@@ -53,7 +75,7 @@ const ContextProvider = ({ children }) => {
     })
   }, [])
 
-  const contextData = { handleGoogleLogin, user }
+  const contextData = { handleGoogleLogin, user, showLoginError, setShowLoginError }
 
   return (
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
