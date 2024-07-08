@@ -3,11 +3,13 @@
 import {
   GoogleAuthProvider,
   onAuthStateChanged,
-  signInWithPopup
+  signInWithPopup,
+  signOut
 } from 'firebase/auth'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { auth } from '../utils/firebaseConfig'
 import { useRouter } from 'next/navigation'
+import { doc, getDoc, setDoc } from '@firebase/firestore'
+import auth, { db } from '../utils/firebaseConfig'
 
 const AuthContext = createContext()
 
@@ -15,6 +17,34 @@ const ContextProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const router = useRouter()
   const [showLoginError, setShowLoginError] = useState(false);
+
+
+  // Storing User data in Firestore
+  const storeUserData = async (AuthUser) => {
+    const userRef = doc(db, 'users', AuthUser.uid);
+
+    const createdAtUnix = new Date(Number(user?.reloadUserInfo?.createdAt))
+    const createdAt = createdAtUnix.toUTCString();
+
+    try {
+      const docSnap = await getDoc(userRef);
+
+      if (!docSnap.exists()) {
+
+        await setDoc(userRef, {
+          createdAt,
+          userId: AuthUser.uid,
+          name: AuthUser.displayName,
+          email: AuthUser.email,
+          photo: AuthUser.photoURL,
+        })
+      }
+    }
+    catch (error) {
+      console.error(error)
+    }
+
+  }
 
 
   // Google Auth
@@ -37,10 +67,16 @@ const ContextProvider = ({ children }) => {
 
       if (response.ok) {
 
+        await storeUserData(user);
+
         setShowLoginError(false);
-        router.push('/home')
+        router.push('/home');
+
+        console.log('User Logged In')
 
       } else {
+
+        signOut(auth);
 
         setShowLoginError(true);
         router.push('/login');
@@ -52,9 +88,9 @@ const ContextProvider = ({ children }) => {
 
       }
 
-
-
     } catch (error) {
+
+      signOut(auth);
 
       setShowLoginError(true);
 
@@ -63,11 +99,13 @@ const ContextProvider = ({ children }) => {
     }
   }
 
+
   // Auth Event Listener
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         setUser(currentUser)
+        console.log(currentUser)
 
       } else {
         setUser(null)

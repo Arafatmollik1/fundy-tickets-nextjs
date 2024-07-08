@@ -8,6 +8,7 @@ export const POST = async (req, { params }) => {
   try {
 
     const authUser = await admin.auth().verifyIdToken(idToken);
+    console.log(authUser);
 
     if (authUser.uid === uid) {
 
