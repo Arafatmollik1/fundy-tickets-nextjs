@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from './utils/firebaseConfig'
 
-
 export default function Home() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)

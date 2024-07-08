@@ -8,17 +8,16 @@ import { useState } from 'react'
 const LoginPage = () => {
   const { handleGoogleLogin, showLoginError, setShowLoginError } = useAuth()
 
-
   // Handle Google auth
   const handleGoogleSignin = () => {
-    setShowLoginError(false);
-    handleGoogleLogin();
+    setShowLoginError(false)
+    handleGoogleLogin()
   }
 
   // Handle email auth
   const handleSignUpWithEmail = (e) => {
     e.preventDefault()
-    setShowLoginError(false);
+    setShowLoginError(false)
   }
 
   return (
@@ -37,18 +36,17 @@ const LoginPage = () => {
       </div>
 
       <div className='mt-[90px] flex w-full flex-col items-center'>
-
-        <div className='w-full relative'>
-
+        <div className='relative w-full'>
           <h1
-
-            className={`w-full rounded-[4px] p-1 text-sm font-medium text-center text-red-700 absolute -top-8 capitalize ${showLoginError ? 'block' : 'hidden'}`}>
+            className={`absolute -top-8 w-full rounded-[4px] p-1 text-center text-sm font-medium capitalize text-red-700 ${showLoginError ? 'block' : 'hidden'}`}
+          >
             Failed to log in !
           </h1>
 
           <button
             className='w-full rounded-[5px] border border-[#97BFD7] p-3 text-sm font-medium text-[#364C6F] transition-all hover:shadow-sm hover:shadow-[#97bed781]'
-            onClick={handleGoogleLogin}>
+            onClick={handleGoogleLogin}
+          >
             Login with Google
           </button>
         </div>
