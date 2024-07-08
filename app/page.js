@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
-import { db } from './utils/firebaseConfig'
+import db from './utils/firestore'
+
 
 export default function Home() {
   const [data, setData] = useState([])

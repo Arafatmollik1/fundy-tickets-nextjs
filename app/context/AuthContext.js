@@ -9,7 +9,9 @@ import {
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { doc, getDoc, setDoc } from '@firebase/firestore'
-import auth, { db } from '../utils/firebaseConfig'
+import db from '../utils/firestore'
+import { auth } from '../utils/firebaseConfig'
+
 
 const AuthContext = createContext()
 
