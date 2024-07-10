@@ -4,7 +4,6 @@ import Image from 'next/image'
 import logo from '@/public/main-logo.png'
 import { useAuth } from '../context/AuthContext'
 
-
 const LoginPage = () => {
   const { handleGoogleLogin, showLoginError, setShowLoginError } = useAuth()
 
