@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import logo from '@/public/main-logo.png'
 import { useAuth } from '../context/AuthContext'
-import { useState } from 'react'
+
 
 const LoginPage = () => {
   const { handleGoogleLogin, showLoginError, setShowLoginError } = useAuth()
@@ -45,7 +45,7 @@ const LoginPage = () => {
 
           <button
             className='w-full rounded-[5px] border border-[#97BFD7] p-3 text-sm font-medium text-[#364C6F] transition-all hover:shadow-sm hover:shadow-[#97bed781]'
-            onClick={handleGoogleLogin}
+            onClick={handleGoogleSignin}
           >
             Login with Google
           </button>
