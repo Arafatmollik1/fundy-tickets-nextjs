@@ -3,15 +3,20 @@ import Image from 'next/image'
 
 import logo from '@/public/main-logo.png'
 import { useAuth } from '../context/AuthContext'
-import { useRouter } from 'next/navigation'
 
 const LoginPage = () => {
-  const { handleGoogleLogin } = useAuth()
-  const router = useRouter()
+  const { handleGoogleLogin, showLoginError, setShowLoginError } = useAuth()
+
+  // Handle Google auth
+  const handleGoogleSignin = () => {
+    setShowLoginError(false)
+    handleGoogleLogin()
+  }
 
   // Handle email auth
   const handleSignUpWithEmail = (e) => {
     e.preventDefault()
+    setShowLoginError(false)
   }
 
   return (
@@ -24,18 +29,26 @@ const LoginPage = () => {
           </h1>
         </div>
 
-        <p className='josefin-sans pr-3 text-[13.47px] font-medium text-[#364C6F]'>
+        <p className='pr-3 text-[13.47px] font-medium text-[#364C6F]'>
           Get set Funded!
         </p>
       </div>
 
       <div className='mt-[90px] flex w-full flex-col items-center'>
-        <button
-          className='w-full rounded-[5px] border border-[#97BFD7] p-3 text-sm font-medium text-[#364C6F] transition-all hover:shadow-sm hover:shadow-[#97bed781]'
-          onClick={handleGoogleLogin}
-        >
-          Login with Google
-        </button>
+        <div className='relative w-full'>
+          <h1
+            className={`absolute -top-8 w-full rounded-[4px] p-1 text-center text-sm font-medium capitalize text-red-700 ${showLoginError ? 'block' : 'hidden'}`}
+          >
+            Failed to log in !
+          </h1>
+
+          <button
+            className='w-full rounded-[5px] border border-[#97BFD7] p-3 text-sm font-medium text-[#364C6F] transition-all hover:shadow-sm hover:shadow-[#97bed781]'
+            onClick={handleGoogleSignin}
+          >
+            Login with Google
+          </button>
+        </div>
 
         <div className='my-[44.5px] w-full border-t border-[#D1D1D1]' />
 
